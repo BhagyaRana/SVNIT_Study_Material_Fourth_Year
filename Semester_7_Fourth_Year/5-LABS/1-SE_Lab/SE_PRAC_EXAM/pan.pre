@@ -1,0 +1,120 @@
+# 1 "Q2.pml"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 31 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 32 "<command-line>" 2
+# 1 "Q2.pml"
+
+
+
+
+int coffeestick_available = 10000;
+int milkbars_available = 10000;
+int silkchocolates_available = 10000;
+int darkchocolates_available = 10000;
+
+int coffeestick_cost = 10;
+int milkbar_cost = 20;
+int silkchocolate_cost = 50;
+int darkchocolate_cost = 50;
+
+int coffeestick_count = 0;
+int milkbar_count = 0;
+int silkchocolate_count = 0;
+int darkchocolate_count = 0;
+
+int total_amount = 0;
+
+proctype print_amount_collected()
+{
+
+
+    printf("Chocolate Vending Machine Needs to be Refilled!\n\n");
+    printf("AMOUNT COLLECTED BY MACHINE\n\n");
+    printf("-----------------------------------------\n");
+    printf("Coffee Stick Cost = %d x %d = %d\n", coffeestick_count, coffeestick_cost, coffeestick_count*coffeestick_cost);
+    printf("Milkbar Cost = %d x %d = %d\n", milkbar_count, milkbar_cost, milkbar_count*milkbar_cost);
+    printf("Silk Chocolate Cost = %d x %d = %d\n", silkchocolate_count, silkchocolate_cost, silkchocolate_count*silkchocolate_cost);
+    printf("Dark Chocolate Cost = %d x %d = %d\n", darkchocolate_count, darkchocolate_cost, darkchocolate_count*darkchocolate_cost);
+    printf("-----------------------------------------\n");
+    printf("AMOUNT COLLECTED BY MACHINE : %d\n", total_amount);
+
+
+}
+
+proctype vender(int id)
+{
+
+
+
+    assert(id<=4);
+
+    do
+    :: printf("Vender start\n");
+    od
+
+    if
+    :: (coffeestick_count == coffeestick_available) -> run print_amount_collected();
+    :: else -> if
+               :: (milkbar_count == milkbars_available) -> run print_amount_collected();
+               :: else -> if
+                          :: (silkchocolate_count == silkchocolates_available) -> run print_amount_collected();
+                          :: else if
+                                  :: (darkchocolate_count<darkchocolates_available) -> run print_amount_collected();
+                                  fi
+                          fi
+                fi
+    fi
+
+    assert(coffeestick_count<coffeestick_available);
+    assert(milkbar_count<milkbars_available);
+    assert(silkchocolate_count<silkchocolates_available);
+    assert(darkchocolate_count<darkchocolates_available);
+
+    if
+    :: (id == 1) -> coffeestick_count = coffeestick_count + 1; total_amount = total_amount + coffeestick_cost;
+    :: else -> if
+                :: (id == 2) -> milkbar_count = milkbar_count + 1; total_amount = total_amount + milkbar_cost;
+                else -> if
+                        :: (id == 3) -> silkchocolate_count = silkchocolate_count + 1; total_amount = total_amount + silkchocolate_cost;
+                        :: else -> darkchocolate_count = darkchocolate_count + 1; total_amount = total_amount + darkchocolate_cost;
+                        fi
+               fi
+    fi
+
+}
+
+proctype customer()
+{
+    printf("Customer start\n");
+
+    printf("Enter your Choice\n 1 - coffeestick 2 - milkbar 3 - silkchocolates 4 - darkchocolates\n");
+    int customer_choice = 1;
+
+    run vender(customer_choice);
+}
+
+init
+{
+    printf("Welcome to Chocolate Vending Machine.\n\n");
+
+
+    bool has_limited_supply = false;
+    has_limited_supply = true;
+    if
+    :: (has_limited_supply == true) -> coffeestick_available = 20; milkbars_available = 20; silkchocolates_available = 10; darkchocolates_available = 15;
+
+    fi
+
+    int customer_orders = 21;
+
+    int i = 0;
+
+    do
+    :: i >= customer_orders -> break
+    :: else -> run customer();
+               i++
+    od
+
+}

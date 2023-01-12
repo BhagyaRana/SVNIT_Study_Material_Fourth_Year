@@ -1,0 +1,95 @@
+# 1 "DiningPhilosophers.pml"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 31 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 32 "<command-line>" 2
+# 1 "DiningPhilosophers.pml"
+
+
+
+int forks[4];
+
+proctype phil(int id)
+{
+end:
+
+  do
+    :: printf("Philosopher %d is thinking\n", id);
+
+
+       int leftfork = id;
+       int rightfork = id+1;
+
+
+       if
+         :: id+1 >= 4 -> rightfork = 0;
+         :: else -> rightfork = id+1;
+       fi
+       assert(rightfork < 4);
+
+
+       bool leftforkacquired = false;
+       bool rightforkacquired = false;
+       do
+          :: leftforkacquired && rightforkacquired -> break
+          :: !leftforkacquired || !rightforkacquired ->
+
+            atomic {
+              do
+                :: forks[leftfork] == 0 ->
+                   forks[leftfork]++;
+                   leftforkacquired = true;
+
+                :: leftforkacquired -> break
+              od
+            }
+
+
+            atomic {
+              if
+
+                :: forks[rightfork] == 0 ->
+                   forks[rightfork]++;
+                   rightforkacquired = true;
+
+
+                :: else ->
+                   forks[leftfork]--;
+                   leftforkacquired = false;
+              fi
+            }
+       od
+       assert(leftforkacquired && rightforkacquired);
+       assert(forks[leftfork] == 1 && forks[rightfork] == 1);
+
+
+       printf("Philosopher %d is eating with forks %d and %d\n", id, leftfork, rightfork);
+progress:
+
+
+       forks[rightfork]--;
+       forks[leftfork]--;
+  od
+}
+
+init
+{
+  int i = 0;
+
+  do
+    :: i >= 4 -> break
+    :: else -> run phil(i);
+               i++
+  od
+}
+
+ltl verify {
+  [](
+    forks[0] <= 1 &&
+    forks[1] <= 1 &&
+    forks[2] <= 1 &&
+    forks[3] <= 1 &&
+    forks[4] <= 1
+  )
+}
