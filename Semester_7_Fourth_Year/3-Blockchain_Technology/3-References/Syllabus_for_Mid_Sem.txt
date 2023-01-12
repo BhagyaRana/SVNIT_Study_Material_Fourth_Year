@@ -1,0 +1,16 @@
+Blockchain Technology – Curriculum for MidSem Exam (Sept 2022)
+
+Blockchain definitions, Bitcoin invention, Blockchain evolution
+Security Primitives and its use
+Blockchain Technology –Domain, keywords, symbols
+Altcoins, Fiat v/s Crypto currency, Un-Censorable market place, Crypto Price fluctuations
+Virtual Assets Travel rule
+Energy usage – crypto v/s banking system
+Ethereum, Smart contracts and EVM
+Smart contract use cases: DeFi, DAO, NFT etc.
+Bitcoin and Ethereum
+Blockchain Components, Transactions and Wallet addresses
+Consensus protocols – PoW and PoS
+Securing Blockchain – Mining, Double spending, Handling exceptions – Forks
+Centralized v/s Decentralized Trust
+Blockchain properties and use cases
