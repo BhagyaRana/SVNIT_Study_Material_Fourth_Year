@@ -1,4 +1,4 @@
-# 📚 SVNIT_Study_Material_Third_Year
+# 📚 SVNIT_Study_Material_Fourth_Year
 
 This is Repository of the **Most Important** and **Valuable** _Lecture Notes_ and **Resources** that Would be Helpful to Any Undergraduate in Engineering, Particularly 4th Year.
 
