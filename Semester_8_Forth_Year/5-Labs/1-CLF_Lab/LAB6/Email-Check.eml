@@ -1,0 +1,204 @@
+Delivered-To: u19cs012@coed.svnit.ac.in
+Received: by 2002:a05:6f02:834a:b0:4b:dbe3:1907 with SMTP id a10csp38334rcf;
+        Tue, 18 Apr 2023 21:48:35 -0700 (PDT)
+X-Received: by 2002:a6b:7a49:0:b0:760:b3b5:3990 with SMTP id k9-20020a6b7a49000000b00760b3b53990mr3950815iop.15.1681879715481;
+        Tue, 18 Apr 2023 21:48:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1681879715; cv=none;
+        d=google.com; s=arc-20160816;
+        b=byU8xCaN0L6NLjaVCCBzI/lmveDSRBvkNqCit9nPQWlU/6MG9YHnyPMWhadcppYJpH
+         pCwALhJSbNz5yPood+v1jSH/mtOHOOYIEtQY9QmghzwykIGuYehIolTsxDzPld9ckdFz
+         7IwPdAF645TxJz84piKYi6tXrMr3l+tvm95YpRQr0p4gWlhRQKc94YuMa6LoUFjnNiub
+         y/9yUlRu4Vfzl4D0SyMhooswHlDyl7TqDVLpiaGxNaxISx8D24R9Acp6vTCpRK0pplfJ
+         /X5KYT5jui4jQDxIJV8c9ZBx4oa4PTpUFZW/Zxa0oso9MLmIkZHRF17ePCyO1K9uQJyK
+         JRFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:message-id:date:mime-version:dkim-signature;
+        bh=TC9Kd6ugGtNzAnXnm7/YXHFwJsE+MGrkssQKxpKPN1E=;
+        b=zGnwIZtcmtZHENrdXPBYzO2n/lwUhMlKQuaYNAKXEym6o8zQUJCnXkOlTa5pnTxiv6
+         dLUjJ1nyPaodsgHsRbBXespTdOUgnH2P6NN+tOp6arGx/WH1Y7SJpXn+D110XPz4x6Hl
+         5xGmCLwAQhEk9REz5ygr2YhJEwLdFLrs+AIpE1rUjCSkcysbcUEZDeqXZyLpWzwoQNVr
+         Y0xjcCOFba7ZQs7z+UpgPlGhniJO9SdjuE5DsN4Mccyo/Pb/MnLTwUU6yk3C2IBQLfEC
+         lyKhmd3lA3L+1duIlpDKwEryzTM1kgUd516AzIQ7F5A4C/ixq3FCSOFFUwE2fjy25Yqu
+         YYQw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20221208 header.b=yA5Mz1W8;
+       spf=pass (google.com: domain of 3o3i_zaguak4bc-fsdzmqzoggfcca.uccuzs.qca@chime-notifications.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3o3I_ZAgUAK4bc-fSdZmQZOggfcca.UccUZS.Qca@chime-notifications.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Return-Path: <3o3I_ZAgUAK4bc-fSdZmQZOggfcca.UccUZS.Qca@chime-notifications.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 132-20020a021d8a000000b0040fa7eebb45sor1200247jaj.126.2023.04.18.21.48.35
+        for <u19cs012@coed.svnit.ac.in>
+        (Google Transport Security);
+        Tue, 18 Apr 2023 21:48:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 3o3i_zaguak4bc-fsdzmqzoggfcca.uccuzs.qca@chime-notifications.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20221208 header.b=yA5Mz1W8;
+       spf=pass (google.com: domain of 3o3i_zaguak4bc-fsdzmqzoggfcca.uccuzs.qca@chime-notifications.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3o3I_ZAgUAK4bc-fSdZmQZOggfcca.UccUZS.Qca@chime-notifications.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20221208; t=1681879715; x=1684471715;
+        h=to:from:subject:message-id:date:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=TC9Kd6ugGtNzAnXnm7/YXHFwJsE+MGrkssQKxpKPN1E=;
+        b=yA5Mz1W8vKH7DVDt+SU0iORFQhB8I0nyDIXdASP9rIG2RvoEjMldPbvJ1j4VYNIg6Y
+         +TqDiEEaXzYBwvNZsyhJqiMa5acHrpPQQRq5h1ANtvEoTC7MGb4hBMvGjxJkrk7dh84V
+         I1ttvJRv5HgNplVNsT+7+QMfohOexFWeHAoMon9D1kgooHDKEsmw8fmnRX2H4iWj3TcN
+         4MVwBntadFTFiqHl+rkbkG2l/kMMiJFzlf2HQ2wU/mCcqf2tTOErkFLnLbk8Jc8meCWN
+         6Rr5/v9CNJMRuLy+S2yZRmAK1tQwTnvEsp+9/5KANGJYUvdQTgnvQP6qzOz0Tw3hmzJa
+         FlxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681879715; x=1684471715;
+        h=to:from:subject:message-id:date:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TC9Kd6ugGtNzAnXnm7/YXHFwJsE+MGrkssQKxpKPN1E=;
+        b=NPziLtEFrSTDyLJKJ0IlD2/sEpVNgiCB23yYSEA8GD9r7fHq3UAA54qOJDW/jr3qF3
+         w4o4g2QUwc2ZAh96PE2F6eo5hDScJamyZE/JoVK8qkKNPd1UW8usmN5Z0nxhnnEXeDh9
+         daQfHd6QRKAtfdLmg1ACTF56MQFKf8PvIKlILYHVz0egeyJhRUtxDx3ea5oG4C5oTakT
+         25vL71dZ27vFmv8/1gQ4Xy2wjUMYmxvCzFD4WudkwwcGWnSTxlzKMuNieHr7eIlJVts4
+         wPhhELfTQ3SYKQZTOLq3r1M47mlVEVLFZrUV6RI60UFkm6kwW5EInFGn2gGQpfx5g8uv
+         HoNA==
+X-Gm-Message-State: AAQBX9cCgpSYHXdnIPa9T1G9WaBMmLTa80t0lGvhaCJyqQidiDvaBKEM
+	RVf6eTAKPJgdArROl5tNblCjyYa/+I9r41y+RyyD
+X-Google-Smtp-Source: AKy350aTQG6ZStvon97TCdBKGuJ9GOc1+505Oa2sW4n8ThzV0P/224AtAETBVH5QUxtPZXihv5ETCgMU7qIxUQ4fyOkQ
+MIME-Version: 1.0
+X-Received: by 2002:a02:6209:0:b0:40f:917d:c058 with SMTP id
+ d9-20020a026209000000b0040f917dc058mr2913317jac.0.1681879715008; Tue, 18 Apr
+ 2023 21:48:35 -0700 (PDT)
+Date: Tue, 18 Apr 2023 21:48:35 -0700
+X-Notifications: NEW_ASSIGNMENT:581833548887:518911532328-1681879665713
+X-Notifications-Bounce-Info: AV0SK3WpzNctho9yqWsVqiEpd_1sbtC5zZIVEeZ-juQfF592D_-qSnwT2kb6WpLiaBoTcBq6xqbfcjh-GmoQUugCHZ3uxzlHRnoiLjCuGb-J4kDyflgdzefsTL60WUO2LUVMVJs4gEdej83Da3s3WlDZdSjivdvoBhHK2oGjgGyuFdtdngfHRQE4Yte5Eam8eNz9rHP4N_3Nqhh6yDNHW2wPwTBfujd7T36bglAv2SrXdFlyKu06_A5vCeS2NRiaUFqdrUJQbDo3tgVgzNWhnCoOO5qqz-ul1mDKNjAwNjA0MDQxNTM1NTk2OTMzMg
+Message-ID: <T2FGj9qC3WeJJ9VGtBiWCQ@notifications.google.com>
+Subject: New assignment: "Assignment 6"
+From: "Ami B Mehta TA2 SVNIT (Classroom)" <no-reply@classroom.google.com>
+To: u19cs012@coed.svnit.ac.in
+Content-Type: multipart/alternative; boundary="000000000000f7d64505f9a92270"
+
+--000000000000f7d64505f9a92270
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+
+
+Hi U19CS012,
+Ami B Mehta TA2 SVNIT posted a new assignment in CS402 || CLF || Div A-B  
+Division A & B  
+<https://accounts.google.com/AccountChooser?continue=https://classroom.google.com/c/NTgxODMzNTQ4ODg3&Email=u19cs012@coed.svnit.ac.in>.
+
+New assignment Due Apr 23
+Assignment 6
+Open  
+<https://accounts.google.com/AccountChooser?continue=https://classroom.google.com/c/NTgxODMzNTQ4ODg3/a/NTE4OTExNTMyMzI4/details&Email=u19cs012@coed.svnit.ac.in>
+Posted Apr 19 by Ami B Mehta TA2 SVNIT
+
+Google LLC 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA
+If you don't want to receive emails from Classroom, you can unsubscribe  
+<https://accounts.google.com/AccountChooser?continue=https://classroom.google.com/s&Email=u19cs012@coed.svnit.ac.in>.
+
+--000000000000f7d64505f9a92270
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><link href=3Dhttps://fonts.googleapis.com/css?family=3DRoboto:4=
+00,500,700,bold|Google+Sans:400,500,700,bold rel=3Dstylesheet><style>@media=
+ (forced-colors: active) and (prefers-color-scheme: dark){.classroomTitleDa=
+rk{content: url("https://www.gstatic.com/classroom/email/classroom_type_whi=
+te.png");}}</style></head><body bgcolor=3D#FFFFFF style=3D"font-family: Rob=
+oto,Helvetica,Arial,sans-serif; margin: 0; padding: 0;"><img src=3D"https:/=
+/notifications.googleapis.com/email/t/AFG8qyWxMSaC_5SRuFBP3jNY10eF6aDMX2cX-=
+OeeF6fOVF7UhizHxJyYajDk0bwOxGBrXDEyMIJxXT6A5dWw4-bw6wSbMuVfSrWQeGW0HBZoXi1x=
+VKlLsodvY4MbvA-vRfT7viRlRKHWZcnqVJu7hw6xYg1dohiYDG-2B-0ZOLoWh8eXNmmBO4f8mxM=
+lZemzzlKfzUutIdVWGC0kxMcK1tkr6uAFdRncdIMBQINu2kPNJoXx4c7oke0tylq6pXRt7V2niz=
+NIPReAufTFLE56450AO5E3g8XT3knx4aCQ3MZIdT2q5gJCQFqV4jlFjnysSbBZG9Yag9m3n3W26=
+FJDyzL_AP2lyIOWD2Rey5LCyorBXI9h9awZczo1pYhQnNGd/a.gif" width=3D1 height=3D1=
+><table align=3Dcenter cellpadding=3D0 cellspacing=3D0 role=3Dpresentation =
+style=3D"background-color: #FFFFFF; border-collapse: collapse; max-width: 5=
+28px; min-width: 256px;" width=3D100%><tr><td style=3D"padding: 0 16px;"><t=
+able role=3Dpresentation><tbody> <tr bgcolor=3D#FFFFFF><td bgcolor=3D#FFFFF=
+F><div style=3D"height: 32px"></div><img alt=3DClassroom&#32;Logo aria-hidd=
+en=3Dtrue style=3D"display: inline-block; margin: 0;" height=3D36px width=
+=3D36px src=3Dhttps://www.gstatic.com/images/branding/product/2x/classroom_=
+48dp.png><img alt=3D{call&#32;productname.classroom&#32;&#47;} class=3Dclas=
+sroomTitleDark height=3D24px style=3D"display: inline-block; margin: 3px 16=
+px;" width=3D180px src=3Dhttps://www.gstatic.com/classroom/email/classroom_=
+type_dark.png></td></tr> </tbody><tbody><tr height=3D48px></tr><tr><td styl=
+e=3D"font-family: Roboto,Helvetica,Arial,sans-serif; font-size: 14px; font-=
+weight: 400; letter-spacing: 0.2px; line-height: 20px;color: #5F6368;">Hi U=
+19CS012,</td></tr><tr><td style=3D"font-family: Roboto,Helvetica,Arial,sans=
+-serif; font-size: 14px; font-weight: 400; letter-spacing: 0.2px; line-heig=
+ht: 20px;color: #5F6368;">Ami B Mehta TA2 SVNIT posted a new assignment in =
+<a href=3D"https://notifications.googleapis.com/email/redirect?t=3DAFG8qyV9=
+XOeMsWnWZToz1RGMoopc5XkB-vuZ8r9iNlsZ43bDmE8KU3wBJbhfosvQRbTN4OW5jBY0QsJOn4N=
+eaGQ13EVtEhcpn33cCs_cnc-wjWVyEHMOoThnpoT3TdXq5Yf1UU3lbavXVfZQrMLrmwjsw035Nd=
+aCpkTUyvNqgfVm1178liJiXvH4eBCKqU2Hd9ZizrF3duF_smVIaIUgU9H4T1AoT3czaHoiBCx-A=
+c0en29mXP6DnWKV7im1KDODmA8uJjK2RWFdMw2D9xIwbfTqLaTLyB1bGPqQGco9Q1wSrMxYDT3z=
+a4BViRZEi_wtk0xeHNUhVbrCB-FPdZlXijgm3w&amp;r=3DeJxNy0EKwjAQBdDbuEysulEoKtZl=
+W4ReIIwhCSTzS2dSxNO70IXbBy-qznKy1hGhsooJQMjeEIq9fu0WAfHLmcCauPo2_g5lJ7IA5T-=
+RHabwGrv-PUyPw9iF_eZeXMptbY4k22Z3IfinkZWTGkcm8QeWiS9h&amp;s=3DALHZ2r60zdrp8=
+-oiGgo7PsXOTvEI" target=3D_blank style=3D"color: #202124; font-weight: 400;=
+ text-decoration: none; ">CS402 || CLF || Div A-B Division A &amp; B</a>.</=
+td></tr><tr height=3D24px></tr><tr><td><table cellpadding=3D0 cellspacing=
+=3D0 dir=3Dltr role=3Dpresentation border=3D0 style=3D"border-top-left-radi=
+us: 8px; border-top-right-radius: 8px; border: 1px solid #E8EAED; border-bo=
+ttom: 0; background-color: #5f6368;" width=3D100%><tbody><tr><td colspan=3D=
+2 height=3D4px></td></tr></tbody></table><table cellpadding=3D0 cellspacing=
+=3D0 dir=3Dltr role=3Dpresentation border=3D0 style=3D"border: 1px solid #E=
+8EAED; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; bor=
+der-top: 0;" width=3D100%><tbody><tr><td rowspan=3D3 width=3D24px></td><td =
+colspan=3D2 height=3D20px></td><td colspan=3D2 height=3D24px></td><td rowsp=
+an=3D3 width=3D24px></td></tr><tr><td style=3D"padding-right: 16px;" valign=
+=3Dtop width=3D20px><!--[if mso]><v:oval xmlns:v=3D"urn:schemas-microsoft-c=
+om:vml" xmlns:w=3D"urn:schemas-microsoft-com:office:word" style=3D"height:4=
+0px;width:40px;" fillcolor=3D"#5f6368" stroke=3D"f" /><v:image src=3D"https=
+://fonts.gstatic.com/s/i/googlematerialicons/assignment/v6/white-48dp/2x/gm=
+_assignment_white_48dp.png" style=3D"position: absolute; top: 8px; left: 8p=
+x; height: 24px; width: 24px;"/><![endif]--><span style=3Dmso-hide:all;><di=
+v style=3D"border-radius: 50%;background-color: #5f6368;height: 24px; width=
+: 24px;padding: 8px;"><img height=3D24 src=3Dhttps://fonts.gstatic.com/s/i/=
+googlematerialicons/assignment/v6/white-48dp/2x/gm_assignment_white_48dp.pn=
+g width=3D24 role=3Dpresentation /></div></span></td><td><table cellpadding=
+=3D0 cellspacing=3D0 dir=3Dltr role=3Dpresentation style=3Dwidth:100%;><tbo=
+dy><tr><td style=3D"font-family: Roboto,Helvetica,Arial,sans-serif; font-si=
+ze: 11px; font-weight: 500; letter-spacing: 0.8px; line-height: 16px; text-=
+transform: uppercase;float: left;color: #5F6368;">New assignment</td><td st=
+yle=3D"font-family:  Google Sans,Roboto,Helvetica,Arial,sans-serif; font-si=
+ze: 14px; letter-spacing: 0.25px; color: #3C4043; float: right;">Due Apr 23=
+</td></tr><tr height=3D4px></tr><tr><td style=3D"font-family: Google Sans,R=
+oboto,Helvetica,Arial,sans-serif; font-size: 18px; line-height: 24px;">Assi=
+gnment 6</td></tr><tr height=3D0></tr><tr height=3D16px></tr><tr><td><table=
+ cellpadding=3D0 cellspacing=3D0 dir=3Dltr role=3Dpresentation border=3D0 s=
+tyle=3D"border-collapse:collapse; display:inline-block;"><tbody><tr><td><a =
+href=3D"https://notifications.googleapis.com/email/redirect?t=3DAFG8qyW37th=
+Qx9mygmgIv0a28NRAWr1jdJ6O_aeYMlef-xfqUbYCe3sVJoUTbeADx-tuGAO93MJ9B8Hz9HCku0=
+hNIS6GmxA7L7JTzbr1hK-q7OpWECmtO_XPDmEJBqmnlgF9wLrQspwhxfKjZ6RCvhRW7J3zG1N0V=
+NXemCkWgIK7gKO0r9hhHXshbnoC22QNAR0BAbNzbEWUNuXyuPSg_LTEBoVBqXpsByhJ7GTksRaC=
+2p7y3Cw72cSbv1lD1PFrT962ZuZbxYp2FrYrrCq5GUa3ccplDF0aZujDz8WzvZIPTqu-sU4fmTL=
+Up2TsbrCemjI_xC7MDQGV1jnP5Bg17jcDqUsn10CZQQ&amp;r=3DeJxNy9EKwiAUgOG36VJbeVM=
+wKpoXXagEvoCciROmZ-xorD19g7ro6ocP_qGUic6cOwCsuRALiGH0DDDx29fuAyL5-QKYS8zVt8=
+PvgdERzYjpfwKubVhMp1Ztn8J04cjdRlIYKxdt1VutD8F7X1wcaSfTlrY2J6B9c7gC-p7RK8fCH=
+LCYPwa-OFw&amp;s=3DALHZ2r7e6mZ4SHkL9OmG7D-lWdD6" style=3D"border: 1px solid=
+ #DADCE0; font-family: Google Sans,Roboto,Helvetica,Arial,sans-serif; color=
+: #202124;border-radius: 4px; box-sizing: border-box; display: inline-block=
+; font-size: 14px; height: 32px; line-height: 30px; padding: 0 24px; text-d=
+ecoration: none; letter-spacing: 0.25px; font-weight: 500;" target=3D_blank=
+>Open</a></td></tr></tbody></table></td></tr><tr height=3D8px></tr><tr><td =
+style=3D"font-family: Roboto,Helvetica,Arial,sans-serif; font-size: 12px; f=
+ont-weight: 400; letter-spacing: 0.3px; line-height: 16px;color: #5F6368;">=
+Posted Apr 19 by Ami B Mehta TA2 SVNIT</td></tr></tbody></table></td></tr><=
+tr><td colspan=3D2 height=3D24px></td></tr></tbody></table></td></tr><tr he=
+ight=3D24px></tr><tr><td><div style=3D"margin-right: 16px; opacity: 54%; fl=
+oat: left;"><img alt=3DGoogle&#32;logo height=3D18px src=3Dhttps://www.gsta=
+tic.com/images/branding/googlelogo/2x/googlelogo_dark_color_74x24dp.png wid=
+th=3D58px></div><div style=3D"font-family: Roboto,Helvetica,Arial,sans-seri=
+f; font-size: 12px; font-weight: 400; letter-spacing: 0.3px; line-height: 1=
+6px;color: #9AA0A6; width: 80%; float: left;">Google LLC 1600 Amphitheatre =
+Parkway, Mountain View, CA 94043 USA<br />If you don't want to receive emai=
+ls from Classroom, you can <a href=3D"https://notifications.googleapis.com/=
+email/redirect?t=3DAFG8qyWrnmOKmu3ZWYIQDfschri8o-xw4tQQ_IBH3zVEHARa98UmgmPC=
+jNCuQb3_XYntZNiGc7qylyX8ocYrfh1KUZpDIxU_Vf0wUdR-8zDIxxKE2edU57TsFrXjNTRb2vu=
+uh1AJuC71yCQGV904CP1uGnTOJyAJLrcf9X91f3rDahUThbstgtVPxLwddt1euhrMHXnyibMH2D=
+Y8TeMMmYMyXqZ9jpbci89FmzCczSomde1S2UahGdcOTGUkXK8hKN1G597r5YA9cWNLW0fbUDPfR=
+D_KcjLEvLP_7dqkt2V2yhypctDrRjyYIyhW4p0ATp5a_vtZ05PAstrdWcovEgiol1e08t76&amp=
+;r=3DeJxNy0EKhDAMBdDbzDJVdwqiMniQEktbaPMHk3p-F7qY7YOXzH46OeeZ0cSUIhBLIEZ122=
+PfBGg4F4ZYlhbm9B4uXvUE6n_Sz159LnPrR9auH1ZGOEgvyUaeKcsNqHAqEw&amp;s=3DALHZ2r=
+7ujGnOX2bOtXrT4pbqx9qq" style=3D"color: #9AA0A6;">unsubscribe</a>.</div></t=
+d></tr><tr height=3D24px></tr></tbody></table></td></tr></table></body></ht=
+ml>
+--000000000000f7d64505f9a92270--

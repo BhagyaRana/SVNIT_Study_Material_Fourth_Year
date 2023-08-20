@@ -1,0 +1,28 @@
+﻿Created By AccessData® FTK® Imager 4.7.1.2 
+
+Case Information: 
+Acquired using: ADI4.7.1.2
+Case Number: 
+Evidence Number: 
+Unique Description: 
+Examiner: 
+Notes: 
+
+--------------------------------------------------------------
+
+Information for C:\Users\Admin\Desktop\LAB5\L5-U12.ad1:
+[Computed Hashes]
+ MD5 checksum:    909a5314391291f5e7845a01db3fe5b7
+ SHA1 checksum:   b9ddf3934194f202f6e6b2dcf35a89a5af96fdae
+
+Image information:
+ Acquisition started:   Wed Mar 29 17:04:28 2023
+ Acquisition finished:  Wed Mar 29 17:04:34 2023
+ Segment list:
+  C:\Users\Admin\Desktop\LAB5\L5-U12.ad1
+
+Image Verification Results:
+ Verification started:  Wed Mar 29 17:04:34 2023
+ Verification finished: Wed Mar 29 17:04:35 2023
+ MD5 checksum:    909a5314391291f5e7845a01db3fe5b7 : verified
+ SHA1 checksum:   b9ddf3934194f202f6e6b2dcf35a89a5af96fdae : verified

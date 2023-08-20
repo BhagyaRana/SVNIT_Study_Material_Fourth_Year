@@ -1,0 +1,9 @@
+C.L.F. Lab Practical Links
+
+Link 1: https://www.youtube.com/watch?v=cq9RHDL2yMM
+
+Link 2: https://www.youtube.com/watch?v=OcSS34Lw910
+
+Link 3: https://www.youtube.com/watch?v=HehVavsBhgI
+
+Link 4: http://www.techpository.com/forensics-using-dd-over-netcat-vs-ssh/
